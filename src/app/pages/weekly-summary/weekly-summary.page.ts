@@ -42,7 +42,7 @@ export class WeeklySummaryPage implements OnInit {
   }
 
   private isWeeklyPlan(data: unknown): data is WeeklyPlan {
-    return true;
+    return data !== null; // TODO: implement type guard for WeeklyPlan
   }
 
   private saveWeeklyPlan(plan: WeeklyPlan): void {
