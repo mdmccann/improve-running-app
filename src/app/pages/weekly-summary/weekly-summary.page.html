@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Weekly Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor='let dayPlan of weeklyPlan.days'>
+    <ion-card-header>
+      <ion-card-title>{{dayPlan.day | titlecase}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{dayPlan.briefDescription}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

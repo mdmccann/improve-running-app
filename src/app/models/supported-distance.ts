@@ -1,0 +1,1 @@
+export type SupportedDistance = '5K';
