@@ -6,14 +6,16 @@
 
 <ion-content>
 
-  <ion-card *ngFor='let dayPlan of weeklyPlan.days'>
-    <ion-card-header>
-      <ion-card-title>{{dayPlan.day | titlecase}}</ion-card-title>
-    </ion-card-header>
+  <div *ngIf='weeklyPlan'>
+    <ion-card *ngFor='let dayPlan of weeklyPlan.days'>
+      <ion-card-header>
+        <ion-card-title>{{dayPlan.day | titlecase}}</ion-card-title>
+      </ion-card-header>
 
-    <ion-card-content>
-      {{dayPlan.briefDescription}}
-    </ion-card-content>
-  </ion-card>
+      <ion-card-content>
+        {{dayPlan.briefDescription}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

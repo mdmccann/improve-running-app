@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { WeeklyPlan } from 'src/app/models/plan';
 import { RunPlanner } from 'src/app/providers/run-planner.service';
 
@@ -9,12 +11,46 @@ import { RunPlanner } from 'src/app/providers/run-planner.service';
 })
 export class WeeklySummaryPage implements OnInit {
 
-  weeklyPlan!: WeeklyPlan;
+  weeklyPlan: WeeklyPlan | undefined;
 
-  constructor(private _runPlanner: RunPlanner) { }
+  private readonly storageKey = 'WEEKLY_PLAN';
 
-  ngOnInit() {
-    this.weeklyPlan = this._runPlanner.getWeeklyPlan();
+  constructor(
+    private _runPlanner: RunPlanner,
+    private _storage: Storage,
+    public loadingController: LoadingController
+  ) { }
+
+  async ngOnInit() {
+    const loadingElement: HTMLIonLoadingElement = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+
+    await loadingElement.present();
+
+    const savedData: unknown = await this.getStoredData();
+
+    if (this.isWeeklyPlan(savedData)) {
+      this.weeklyPlan = savedData;
+    } else {
+      const newPlan: WeeklyPlan = this._runPlanner.getWeeklyPlan();
+      this.weeklyPlan = newPlan;
+      this.saveWeeklyPlan(newPlan);
+    }
+
+    loadingElement.dismiss();
+  }
+
+  private isWeeklyPlan(data: unknown): data is WeeklyPlan {
+    return true;
+  }
+
+  private saveWeeklyPlan(plan: WeeklyPlan): void {
+    this._storage.set(this.storageKey, plan); // handle error - what if saving failed?
+  }
+
+  private getStoredData(): Promise<unknown | null> {
+    return this._storage.get(this.storageKey); // handle error - what if retrieving failed?
   }
 
 }
