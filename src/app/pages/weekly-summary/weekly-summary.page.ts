@@ -49,7 +49,7 @@ export class WeeklySummaryPage implements OnInit {
     this._storage.set(this.storageKey, plan); // handle error - what if saving failed?
   }
 
-  private getStoredData(): Promise<unknown | null> {
+  private getStoredData(): Promise<unknown> {
     return this._storage.get(this.storageKey); // handle error - what if retrieving failed?
   }
 
