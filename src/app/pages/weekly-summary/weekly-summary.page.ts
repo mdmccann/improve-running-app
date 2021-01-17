@@ -18,11 +18,11 @@ export class WeeklySummaryPage implements OnInit {
   constructor(
     private _runPlanner: RunPlanner,
     private _storage: Storage,
-    public loadingController: LoadingController
+    private _loadingController: LoadingController
   ) { }
 
   async ngOnInit() {
-    const loadingElement: HTMLIonLoadingElement = await this.loadingController.create({
+    const loadingElement: HTMLIonLoadingElement = await this._loadingController.create({
       message: 'Please wait...',
     });
 

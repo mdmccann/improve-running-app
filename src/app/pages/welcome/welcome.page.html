@@ -12,17 +12,17 @@
 
       <ion-item>
         <ion-label>Distance</ion-label>
-        <ion-select [(ngModel)]="distance" [interfaceOptions]="selectOptions">
+        <ion-select [(ngModel)]="distance" [interfaceOptions]="selectOptions" placeholder="5K">
           <ion-select-option value="5K">5K</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Target Time</ion-label>
-        <ion-datetime [(ngModel)]="targetTime" displayFormat="HH:mm:ss"></ion-datetime>
+        <ion-datetime [(ngModel)]="targetTime" displayFormat="HH:mm:ss" placeholder="HH:mm:ss"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Current Best Time</ion-label>
-        <ion-datetime [(ngModel)]="currentBestTime" displayFormat="HH:mm:ss"></ion-datetime>
+        <ion-datetime [(ngModel)]="currentBestTime" displayFormat="HH:mm:ss" placeholder="HH:mm:ss"></ion-datetime>
       </ion-item>
 
     </ion-list>
