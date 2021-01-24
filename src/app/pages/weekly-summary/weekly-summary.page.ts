@@ -11,6 +11,29 @@ import { RunPlanner } from 'src/app/providers/run-planner.service';
 })
 export class WeeklySummaryPage implements OnInit {
 
+  weeks: number[] = [1, 2, 3, 4, 5];
+
+  statusIcons = [
+    { icon: 'ellipse-outline', colour: 'default' },
+    { icon: 'checkmark-circle-outline', colour: 'success' },
+    { icon: 'close-circle-outline', colour: 'danger' }
+  ]
+
+  statusIcon = 'checkmark-circle-outline'
+  statusIconColour = 'success'
+
+  onStatusIconClick(): void {
+    const current = this.statusIcons.findIndex(config => config.icon === this.statusIcon);
+    const next = (current + 1) % 3;
+
+    this.statusIcon = this.statusIcons[next].icon;
+    this.statusIconColour = this.statusIcons[next].colour;
+  }
+
+  options = {
+    initialSlide: 1,
+  }
+
   weeklyPlan: WeeklyPlan | undefined;
 
   private readonly storageKey = 'WEEKLY_PLAN';

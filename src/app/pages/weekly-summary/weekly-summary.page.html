@@ -1,19 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Weekly Summary</ion-title>
+    <ion-title>
+      <h4>Weekly Summary</h4>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf='weeklyPlan'>
-    <ion-card *ngFor='let dayPlan of weeklyPlan.days'>
-      <ion-card-header>
-        <ion-card-title>{{dayPlan.day | titlecase}}</ion-card-title>
-      </ion-card-header>
+  <ion-slides pager style='height: 100%;' class="weekly-slider" [options]="options">
+    <ion-slide style='display: block;' *ngFor='let week of weeks'>
+      <div *ngIf='weeklyPlan'>
+        <ion-list>
+          <ion-item-divider>
+            <ion-label>
+              Week {{week}}
+            </ion-label>
+          </ion-item-divider>
 
-      <ion-card-content>
-        {{dayPlan.briefDescription}}
-      </ion-card-content>
-    </ion-card>
-  </div>
+
+          <ion-item *ngFor='let dayPlan of weeklyPlan.days'>
+            <ion-icon color="secondary" name="bed-outline" slot="start"></ion-icon>
+
+            <ion-label class=" ion-text-wrap">
+              <h5>{{dayPlan.day | titlecase}}</h5>
+              <p>{{dayPlan.briefDescription}}</p>
+            </ion-label>
+
+            <ion-icon [color]="statusIconColour" [name]="statusIcon" (click)="onStatusIconClick()" slot="end">
+            </ion-icon>
+            <!-- <ion-icon color="default" name="ellipse-outline"></ion-icon>
+              <ion-icon color="danger" name="close-circle-outline"></ion-icon> -->
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+
+
 </ion-content>
