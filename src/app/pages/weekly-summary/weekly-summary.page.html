@@ -20,6 +20,7 @@
 
           <ion-item *ngFor='let dayPlan of weeklyPlan.days'>
             <ion-icon color="secondary" name="bed-outline" slot="start"></ion-icon>
+            <!-- for interval use the repeat icon and for tempo, use the speedometer. For easy run, use the walk icon -->
 
             <ion-label class=" ion-text-wrap">
               <h5>{{dayPlan.day | titlecase}}</h5>
